@@ -3,8 +3,9 @@ import axios from 'axios';
 const Context = React.createContext();
 
 
-const baseUrl = 'https://api.genius.com/oauth/authorize?'
-const client_id = process.env.REACT_APP_GENIUS_CLIENTID
+const baseUrl = 'https://genius.p.rapidapi.com/search'
+
+
 
 export class Provider extends Component {
     state = {
@@ -14,20 +15,26 @@ export class Provider extends Component {
         heading: 'Top 10 Tracks'
     };
     componentDidMount() {
-        axios
-            .get(
-                'https://genius.p.rapidapi.com/search', {
-                params: { q: 'Kendrick Lamar' },
-                headers: {
-                    'X-RapidAPI-Key': '8780038684mshf933dce4ebe00dfp171953jsn97e90579acca',
-                    'X-RapidAPI-Host': 'genius.p.rapidapi.com'
-                }
+        axios.get(
+            baseUrl, {
+            params: { q: 'Kanye West', per_page: 10 },
+            headers: {
+                // to do: place key in .env
+                'X-RapidAPI-Key': '8780038684mshf933dce4ebe00dfp171953jsn97e90579acca',
+                'X-RapidAPI-Host': 'genius.p.rapidapi.com'
             }
-            )
+        }
+        )
             .then(res => {
-                console.log(res.data);
+                let musicData = res.data.response.hits;
+
+                // musicData.forEach((track) => {
+                //     console.log(track.result.full_title)
+                // })
+                this.setState({ track_list: musicData })
             })
             .catch(err => console.log(err));
+
     }
 
     render() {
