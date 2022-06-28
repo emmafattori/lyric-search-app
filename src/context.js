@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 const Context = React.createContext();
-
-
 const baseUrl = 'https://genius.p.rapidapi.com/search'
-
-
 
 export class Provider extends Component {
     state = {
@@ -17,7 +13,7 @@ export class Provider extends Component {
     componentDidMount() {
         axios.get(
             baseUrl, {
-            params: { q: 'Kanye West', per_page: 10 },
+            params: { q: 'Odesza', per_page: 10 },
             headers: {
                 // to do: place key in .env
                 'X-RapidAPI-Key': '8780038684mshf933dce4ebe00dfp171953jsn97e90579acca',
@@ -27,10 +23,7 @@ export class Provider extends Component {
         )
             .then(res => {
                 let musicData = res.data.response.hits;
-
-                // musicData.forEach((track) => {
-                //     console.log(track.result.full_title)
-                // })
+                console.log(musicData)
                 this.setState({ track_list: musicData })
             })
             .catch(err => console.log(err));
