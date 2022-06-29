@@ -8,7 +8,7 @@ export class Provider extends Component {
         track_list: [
 
         ],
-        heading: 'Top 10 Tracks'
+        heading: 'Featured Artist'
     };
     componentDidMount() {
         axios.get(
