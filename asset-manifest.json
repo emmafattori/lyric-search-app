@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/lyric-search-app/static/css/main.31d6cfe0.css",
+    "main.js": "/lyric-search-app/static/js/main.a9944ab6.js",
+    "index.html": "/lyric-search-app/index.html",
+    "main.a9944ab6.js.map": "/lyric-search-app/static/js/main.a9944ab6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.a9944ab6.js"
+  ]
+}
