@@ -3,12 +3,25 @@ import axios from 'axios';
 const Context = React.createContext();
 const baseUrl = 'https://genius.p.rapidapi.com/search'
 
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'SEARCH_TRACKS':
+            return {
+                ...state,
+                track_list: action.payload,
+                heading: 'Search Results'
+            };
+        default: return state;
+    }
+}
+
 export class Provider extends Component {
     state = {
         track_list: [
 
         ],
-        heading: 'Featured Artist'
+        heading: 'Featured Artist',
+        dispatch: action => this.setState(state => reducer(state, action))
     };
     componentDidMount() {
         axios.get(
@@ -23,7 +36,7 @@ export class Provider extends Component {
         )
             .then(res => {
                 let musicData = res.data.response.hits;
-                console.log(musicData)
+                // console.log(musicData)
                 this.setState({ track_list: musicData })
             })
             .catch(err => console.log(err));
