@@ -15,6 +15,8 @@ function App() {
             <Switch>
               <Route exact path="/" component={Index} />
             </Switch>
+            <Index />
+
           </div>
         </React.Fragment>
       </Router>
